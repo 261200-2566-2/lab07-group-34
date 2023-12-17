@@ -55,7 +55,8 @@ public class mySet<E> implements Set<E> {// implements Set from Hashmap
     public boolean addAll(Collection<? extends E> c) {
         boolean modified = false;
         for (E element : c) {
-            if (add(element)) {
+            if (!contains(element)) {
+                add(element);
                 modified = true;
             }
         }
