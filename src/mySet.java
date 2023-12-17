@@ -48,56 +48,27 @@ public class mySet<E> implements Set<E> {// implements Set from Hashmap
 
     @Override
     public boolean containsAll(Collection<?> c) {// find that if elements in collection are present in set?
-        for (Object element : c) {
-            if (!contains(element)){// if elements not represent in c return false
-                return false;
-            }
-        }
-        return true;
+        return map.keySet().containsAll(c);
     }
 
     @Override
     public boolean addAll(Collection<? extends E> c) {// add all elements that not represent in set
-        boolean modified = false;// Is set change?
-        for (E element : c) {
-            if (!contains(element)) {// if element not represent in c then add element in c
-                add(element);
-                modified = true;// set has been changed
-            }
-        }
-        return modified;
+        return map.keySet().addAll(c);
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {// pick a same elements from collection and set then remove the rest
-        boolean modified = false;// Is set changed?
-        Iterator<E> iterator = iterator();// read all set elements
-        while (iterator.hasNext()) {// while current element isn't the last element in set
-            E element = iterator.next();// change current element to next element
-            if (!c.contains(element)) {// if current element isn't in set then remove current element
-                iterator.remove();
-                modified = true;// set has been changed
-            }
-        }
-        return modified;
+        return map.keySet().retainAll(c);
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {// remove all element in set that represent in collection
-        boolean modified = false;// Is set changed?
-        Iterator<E> iterator = iterator();// read all set elements
-        while (iterator.hasNext()) {//  while current element isn't the last element in set
-            E element = iterator.next();// change current element to next element
-            if (c.contains(element)) {// if current element is in set then remove
-                iterator.remove();
-                modified = true;// set has been changed
-            }
-        }
-        return modified;
+        return map.keySet().removeAll(c);
     }
 
     @Override
     public void clear() {// clear all elements in set
         map.clear();
     }
+
 }
