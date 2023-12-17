@@ -52,8 +52,15 @@ public class mySet<E> implements Set<E> {// implements Set from Hashmap
     }
 
     @Override
-    public boolean addAll(Collection<? extends E> c) {// add all elements that not represent in set
-        return map.keySet().addAll(c);
+    public boolean addAll(Collection<? extends E> c) {
+        boolean modified = false;
+        for (E element : c) {
+            if (!contains(element)) {
+                add(element);
+                modified = true;
+            }
+        }
+        return modified;
     }
 
     @Override
